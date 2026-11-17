@@ -205,7 +205,7 @@ export default function ChatPanel({
       <div
         ref={scroller}
         onScroll={onScroll}
-        className="min-h-0 flex-1 space-y-5 overflow-y-auto px-4 py-4">
+        className="min-h-0 flex-1 space-y-5 overflow-y-auto px-4 py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {messages.length === 0 ? (
           <div className="flex h-full min-h-[12rem] animate-fade-in flex-col items-center justify-center text-center">
             <div className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-blue-50 to-violet-100 text-indigo-600 ring-1 ring-indigo-100">
@@ -260,7 +260,7 @@ export default function ChatPanel({
               sessionId ? "Ask about this recording…" : "Ask across all your conversations…"
             }
             aria-label="Your question"
-            className="max-h-40 min-h-[36px] flex-1 resize-none border-none rounded-xl outline-none ring-0 shadow-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none active:outline-none bg-transparent px-2 py-1.5 text-sm text-zinc-900 placeholder:text-zinc-400 disabled:cursor-not-allowed"
+            className="max-h-40 min-h-[36px] flex-1 resize-none border-none  outline-none ring-0 shadow-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none active:outline-none bg-transparent px-2 py-1.5 text-sm text-zinc-900 placeholder:text-zinc-400 disabled:cursor-not-allowed"
           />
           {busy ? (
             <button

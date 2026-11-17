@@ -81,12 +81,12 @@ function SidebarBody({ onNavigate }) {
         ))}
       </nav>
       <RecordingPill onNavigate={onNavigate} />
-      <div className="border-t border-white/5 p-3">
+      {/* <div className="border-t border-white/5 p-3">
         <Link to="/" onClick={onNavigate} className="flex items-center gap-2 rounded-lg px-3 py-2 text-xs text-zinc-400 transition hover:bg-white/5">
           <span className={`h-2 w-2 rounded-full ${health == null && !serverDown ? 'bg-zinc-500' : ok ? 'bg-emerald-400' : 'bg-amber-400'}`} />
           {health == null && !serverDown ? 'Checking services…' : ok ? 'All local services running' : 'Setup needed — view status'}
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }

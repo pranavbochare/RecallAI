@@ -1,82 +1,130 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRight, Clock, FileAudio, Layers, Mic, MessagesSquare, Type } from 'lucide-react';
-import { useStats } from '../hooks/useSessions';
-import { useRecorder } from '../hooks/useRecorder';
-import { formatDuration, formatNumber, greeting } from '../lib/format';
-import StatCard from '../components/StatCard';
-import SessionCard from '../components/SessionCard';
-import SystemStatus from '../components/SystemStatus';
-import EmptyState from '../components/EmptyState';
+import { Link, useNavigate } from "react-router-dom";
+import { ArrowRight, Clock, FileAudio, Layers, Mic, MessagesSquare, Type } from "lucide-react";
+import { useStats } from "../hooks/useSessions";
+import { useRecorder } from "../hooks/useRecorder";
+import { formatDuration, formatNumber, greeting } from "../lib/format";
+import StatCard from "../components/StatCard";
+import SessionCard from "../components/SessionCard";
+// import SystemStatus from '../components/SystemStatus';
+import EmptyState from "../components/EmptyState";
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const { data, loading, error } = useStats();
   const { phase } = useRecorder();
-  const recording = phase === 'recording' || phase === 'saving';
+  const recording = phase === "recording" || phase === "saving";
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-6 sm:px-8 sm:py-9">
-      <div className="flex animate-fade-up flex-wrap items-end justify-between gap-4">
+    <div className="mx-auto max-w-7xl px-4 py-7 sm:px-8 sm:py-10">
+      <div className="flex animate-fade-up flex-col justify-between gap-5 sm:flex-row sm:items-end">
         <div>
-          <p className="text-sm font-medium text-indigo-600">{greeting()}</p>
-          <h1 className="mt-0.5 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl">Your conversation memory</h1>
-          <p className="mt-1 text-sm text-zinc-500">Record once, then ask questions about anything that was said.</p>
+          <p className="text-sm font-semibold tracking-wide text-indigo-600">{greeting()}</p>
+          <h1 className="mt-1 text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl">
+            Your conversation memory
+          </h1>
+          <p className="mt-2 max-w-xl text-sm leading-relaxed text-zinc-500">
+            Record once, then ask questions about anything that was said.
+          </p>
         </div>
-        <div className="flex gap-2">
-          <Link to="/ask" className="btn-secondary">
+
+        <div className="flex w-full flex-wrap gap-3 sm:w-auto">
+          <Link
+            to="/ask"
+            className="btn-secondary inline-flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-2.5 sm:flex-none">
             <MessagesSquare className="h-4 w-4" />
             Ask AI
           </Link>
-          <button className="btn-primary" onClick={() => navigate('/record', { state: { autostart: !recording } })}>
+
+          <button
+            className="btn-primary inline-flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-2.5 shadow-sm sm:flex-none"
+            onClick={() => navigate("/record", { state: { autostart: !recording } })}>
             <Mic className="h-4 w-4" />
-            {recording ? 'Back to recording' : 'Quick record'}
+            {recording ? "Back to recording" : "Quick record"}
           </button>
         </div>
       </div>
 
-      <div className="mt-7 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <StatCard icon={FileAudio} label="Recordings" value={formatNumber(data?.recordings)} hint={data ? `${data.readyRecordings} indexed` : undefined} loading={loading} delay={0} />
-        <StatCard icon={Clock} label="Total duration" value={formatDuration(data?.totalDurationMs)} tone="from-violet-500 to-fuchsia-500" loading={loading} delay={60} />
-        <StatCard icon={Layers} label="Transcript chunks" value={formatNumber(data?.chunks)} hint="Vectors stored in Qdrant" tone="from-indigo-500 to-blue-500" loading={loading} delay={120} />
-        <StatCard icon={Type} label="Words captured" value={formatNumber(data?.words)} tone="from-sky-500 to-cyan-500" loading={loading} delay={180} />
+      <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-3">
+        <StatCard
+          icon={FileAudio}
+          label="Recordings"
+          value={formatNumber(data?.recordings)}
+          hint={data ? `${data.readyRecordings} indexed` : undefined}
+          loading={loading}
+          delay={0}
+        />
+
+        <StatCard
+          icon={Clock}
+          label="Total duration"
+          value={formatDuration(data?.totalDurationMs)}
+          tone="from-violet-500 to-fuchsia-500"
+          loading={loading}
+          delay={60}
+        />
+
+        {/* <StatCard icon={Layers} label="Transcript chunks" value={formatNumber(data?.chunks)} hint="Vectors stored in Qdrant" tone="from-indigo-500 to-blue-500" loading={loading} delay={120} /> */}
+
+        <StatCard
+          icon={Type}
+          label="Words captured"
+          value={formatNumber(data?.words)}
+          tone="from-sky-500 to-cyan-500"
+          loading={loading}
+          delay={180}
+        />
       </div>
 
-      <div className="mt-7 grid gap-6 lg:grid-cols-[1fr_20rem]">
+      <div className="mt-10 grid gap-8">
         <section>
-          <div className="mb-3 flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-zinc-900">Recent conversations</h2>
-            <Link to="/sessions" className="inline-flex items-center gap-1 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-              View all <ArrowRight className="h-3.5 w-3.5" />
+          <div className="mb-5 flex items-center justify-between">
+            <div>
+              <h2 className="text-base font-semibold tracking-tight text-zinc-900">
+                Recent conversations
+              </h2>
+              <p className="mt-1 text-xs text-zinc-500">
+                Your latest recorded and saved conversations
+              </p>
+            </div>
+
+            <Link
+              to="/sessions"
+              className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-indigo-600 transition hover:bg-indigo-50 hover:text-indigo-700">
+              View all
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
+
           {error ? (
-            <div className="card border-red-200 bg-red-50 p-4 text-sm text-red-800">
-              <p className="font-medium">{error.message}</p>
+            <div className="rounded-xl border border-red-200 bg-red-50 p-5 text-sm text-red-800 shadow-sm">
+              <p className="font-semibold">{error.message}</p>
               {error.hint && <p className="mt-1 text-red-700/80">{error.hint}</p>}
             </div>
           ) : loading ? (
-            <div className="space-y-3">
+            <div className="space-y-4">
               {[0, 1, 2].map((i) => (
-                <div key={i} className="skeleton h-28" />
+                <div key={i} className="skeleton h-28 rounded-xl" />
               ))}
             </div>
           ) : data.recent.length === 0 ? (
-            <div className="card">
+            <div className="rounded-2xl border border-dashed border-zinc-300 bg-white px-5 py-10 shadow-sm sm:py-14">
               <EmptyState
                 icon={Mic}
                 title="No recordings yet"
                 action={
-                  <button className="btn-primary" onClick={() => navigate('/record', { state: { autostart: true } })}>
+                  <button
+                    className="btn-primary inline-flex items-center gap-2 rounded-xl px-5 py-2.5 shadow-sm"
+                    onClick={() => navigate("/record", { state: { autostart: true } })}>
                     <Mic className="h-4 w-4" />
                     Start your first recording
                   </button>
-                }
-              >
-                Hit record, talk, and RecallAI will transcribe, index and remember the conversation, entirely on this computer.
+                }>
+                Hit record, talk, and RecallAI will transcribe, index and remember the conversation,
+                entirely on this computer.
               </EmptyState>
             </div>
           ) : (
-            <div className="space-y-3">
+            <div className="space-y-4">
               {data.recent.map((s, i) => (
                 <SessionCard key={s.id} session={s} delay={i * 50} />
               ))}

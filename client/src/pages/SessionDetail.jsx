@@ -116,12 +116,12 @@ export default function SessionDetail() {
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2.5">
             <h1 className="truncate text-2xl font-semibold tracking-tight text-zinc-900">{session.title}</h1>
-            <StatusBadge status={session.status} />
+            {/* <StatusBadge status={session.status} /> */}
           </div>
           <p className="mt-1 text-sm text-zinc-500">{formatDate(session.startedAt)}</p>
           <div className="mt-2.5 flex flex-wrap gap-1.5">
             <span className="chip"><Clock className="h-3 w-3" />{formatDuration(session.durationMs)}</span>
-            <span className="chip"><Layers className="h-3 w-3" />{plural(session.chunkCount, 'chunk')}</span>
+            {/* <span className="chip"><Layers className="h-3 w-3" />{plural(session.chunkCount, 'chunk')}</span> */}
             <span className="chip"><Type className="h-3 w-3" />{plural(session.wordCount, 'word')}</span>
           </div>
         </div>

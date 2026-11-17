@@ -7,7 +7,7 @@ import ChatPanel from '../components/ChatPanel';
 export default function Ask() {
   const { data } = useStats();
   const empty = data && data.chunks === 0;
-  const subtitle = data ? `Searching ${plural(data.readyRecordings, 'indexed recording')} · ${plural(data.chunks, 'chunk')}` : 'Searching all recordings';
+  //const subtitle = data ? `Searching ${plural(data.readyRecordings, 'indexed recording')} · ${plural(data.chunks, 'chunk')}` : 'Searching all recordings';
 
   return (
     <div className="mx-auto flex h-full max-w-4xl flex-col px-4 py-5 sm:px-8 sm:py-7">
@@ -18,7 +18,7 @@ export default function Ask() {
       <ChatPanel
         scope="global"
         title="All conversations"
-        subtitle={subtitle}
+        //subtitle={subtitle}
         className="min-h-[28rem] flex-1"
         disabledReason={
           empty ? (
