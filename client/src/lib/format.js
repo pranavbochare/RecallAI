@@ -47,13 +47,13 @@ export const plural = (n, word) => `${new Intl.NumberFormat().format(n || 0)} ${
 
 export const formatNumber = (n) => new Intl.NumberFormat().format(n || 0);
 
-export function greeting() {
-  const h = new Date().getHours();
-  if (h < 5) return 'Working late';
-  if (h < 12) return 'Good morning';
-  if (h < 18) return 'Good afternoon';
-  return 'Good evening';
-}
+// export function greeting() {
+//   const h = new Date().getHours();
+//   if (h < 5) return 'Working late';
+//   if (h < 12) return 'Good morning';
+//   if (h < 18) return 'Good afternoon';
+//   return 'Good evening';
+// }
 
 export function transcriptText(session, segments) {
   const head = [

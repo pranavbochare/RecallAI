@@ -18,7 +18,7 @@ export default function Dashboard() {
     <div className="mx-auto max-w-7xl px-4 py-7 sm:px-8 sm:py-10">
       <div className="flex animate-fade-up flex-col justify-between gap-5 sm:flex-row sm:items-end">
         <div>
-          <p className="text-sm font-semibold tracking-wide text-indigo-600">{greeting()}</p>
+          {/* <p className="text-sm font-semibold tracking-wide text-indigo-600">{greeting()}</p> */}
           <h1 className="mt-1 text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl">
             Your conversation memory
           </h1>
