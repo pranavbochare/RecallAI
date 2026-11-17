@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Clock, FileAudio, Layers, Mic, MessagesSquare, Type } from "lucide-react";
 import { useStats } from "../hooks/useSessions";
 import { useRecorder } from "../hooks/useRecorder";
-import { formatDuration, formatNumber, greeting } from "../lib/format";
+import { formatDuration, formatNumber } from "../lib/format";
 import StatCard from "../components/StatCard";
 import SessionCard from "../components/SessionCard";
 // import SystemStatus from '../components/SystemStatus';
