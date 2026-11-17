@@ -1,0 +1,24 @@
+{
+  "name": "recallai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RecallAI - AI Conversation Memory Assistant (local-first: Web Speech, Ollama, Qdrant, SQLite)",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "setup": "npm install && npm --prefix server install && npm --prefix client install",
+    "dev": "concurrently -k -n api,web -c blue,magenta \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "dev:all": "concurrently -k -n qdrant,api,web -c yellow,blue,magenta \"npm run qdrant\" \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "qdrant": "node scripts/start-qdrant.mjs",
+    "doctor": "node scripts/doctor.mjs",
+    "build": "npm --prefix client run build",
+    "start": "npm --prefix server start",
+    "test": "npm --prefix server test",
+    "test:ui": "npm --prefix client run build && node e2e/ui.e2e.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.7"
+  }
+}

@@ -1,0 +1,15 @@
+# Native (no Docker) Qdrant config for RecallAI.
+# Paths are relative to the project root, because scripts/start-qdrant.mjs runs Qdrant from there.
+log_level: INFO
+
+storage:
+  storage_path: ./data/qdrant/storage
+  snapshots_path: ./data/qdrant/snapshots
+  on_disk_payload: true
+
+service:
+  host: 127.0.0.1
+  http_port: 6333
+  grpc_port: 6334
+
+telemetry_disabled: true
